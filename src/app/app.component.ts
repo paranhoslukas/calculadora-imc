@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'; //profersor não esqueça de instalar o angular core (npm install @angular/core).
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 
@@ -27,67 +27,76 @@ import { NgIf } from '@angular/common';
   `,
   styles: [`
     .container {
-      font-family: Arial, sans-serif;
       max-width: 400px;
       margin: 20px auto;
       padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #f9f9f9;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #e3f2fd, #ffffff);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-
+  
     h1 {
       text-align: center;
-      color: #333;
+      color: #2c3e50;
+      font-size: 24px;
+      margin-bottom: 20px;
     }
-
     .input-group {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
-
     label {
       display: block;
       margin-bottom: 5px;
-      font-weight: bold;
+      font-weight: 500;
+      color: #34495e;
     }
-
     input[type="number"] {
       width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      padding: 10px;
+      border: 1px solid #dcdcdc;
+      border-radius: 6px;
       box-sizing: border-box;
+      font-size: 14px;
+      color: #2c3e50;
     }
-
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 4px rgba(52, 152, 219, 0.5);
+    }
     button {
-      background-color: #4CAF50;
+      background: linear-gradient(135deg, #42a5f5, #1e88e5);
       color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+      padding: 12px 20px;
+      border-radius: 6px;
       font-size: 16px;
+      font-weight: 500;
       display: block;
-      margin: 10px auto;
+      margin: 20px auto;
     }
-
     button:hover {
-      background-color: #3e8e41;
+      background: linear-gradient(135deg, #1e88e5, #1565c0);
     }
-
     .result {
       margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      background-color: #fff;
+      padding: 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      background-color: #f9f9f9;
       text-align: center;
     }
-
     .result h2 {
-      color: #337ab7;
+      color: #3498db;
+      font-size: 20px;
+      margin-bottom: 10px;
     }
-  `],
+    .result p {
+      color: #2c3e50;
+      font-size: 16px;
+      margin: 5px 0;
+    }
+  `]
 })
 export class AppComponent {
   peso: number | null = null;
@@ -98,7 +107,7 @@ export class AppComponent {
   calcularIMC() {
     if (this.peso !== null && this.altura !== null && this.peso > 0 && this.altura > 0) {
       this.imc = this.peso / (this.altura * this.altura);
-      this.imc = parseFloat(this.imc.toFixed(2)); // Arredonda para 2 casas decimais
+      this.imc = parseFloat(this.imc.toFixed(2));
       this.resultado = this.interpretarIMC(this.imc);
     } else {
       this.imc = null;
@@ -109,9 +118,9 @@ export class AppComponent {
   interpretarIMC(imc: number): string {
     if (imc < 18.5) {
       return 'Abaixo do peso';
-    } else if (imc < 25) {
+    } else if (imc < 24.9) {
       return 'Peso normal';
-    } else if (imc < 30) {
+    } else if (imc < 29.9) {
       return 'Sobrepeso';
     } else {
       return 'Obesidade';
